@@ -11,11 +11,11 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       type: 'mysql',
       host: this.configService.get<string>('DB_HOST'),
-      port: +this.configService.get<string>('DB_PORT'),
+      port: +this.configService.get<number>('DB_PORT'),
       username: this.configService.get<string>('DB_USERNAME'),
       password: this.configService.get<string>('DB_PASSWORD'),
       database: this.configService.get<string>('DB_DATABASE'),
-      entities: [__dirname + '/entities/**.entity{.ts,.js}'],
+      entities: [__dirname + '/entities/*.entity{.ts,.js}'],
       synchronize: this.configService.get<string>('NODE_ENV') === 'prod' ? false : true,
       namingStrategy: new SnakeNamingStrategy(),
     };
