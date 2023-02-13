@@ -1,9 +1,9 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { BaseTimeEntity } from './base-time.entity';
+import { CommonEntity } from './common.entity';
 import { UserInfo } from './user-info.entity';
 
 @Entity('user')
-export class User extends BaseTimeEntity {
+export class User extends CommonEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
