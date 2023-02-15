@@ -1,6 +1,6 @@
 import { Table } from '../enums/tables.enum';
 
-export interface QueryTarget {
+export interface TableAnswer {
   query?: string;
   target?: {
     table: Table;
