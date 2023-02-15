@@ -9,7 +9,7 @@ export class QueryQuestions {
     type: 'list',
     choose: QUERIES,
   })
-  parseQuery(query: string) {
+  parseQuery(query: string): string {
     if (!QUERIES.includes(query)) {
       throw new Error('Invalid query');
     }
