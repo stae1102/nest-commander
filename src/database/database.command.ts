@@ -1,4 +1,5 @@
 import { Command, CommandRunner, InquirerService, Option } from 'nest-commander';
+import { DatabaseService } from './database.service';
 import { Table } from './types/enums/table.enum';
 import { QueryAnswer } from './types/interfaces/query-answer.interface';
 import { TableAnswer } from './types/interfaces/table-answer.interface';
@@ -9,7 +10,7 @@ import { TableAnswer } from './types/interfaces/table-answer.interface';
   options: { isDefault: true },
 })
 export class DatabaseCommander extends CommandRunner {
-  constructor(private readonly inquirer: InquirerService) {
+  constructor(private readonly inquirer: InquirerService, private readonly databaseService: DatabaseService) {
     super();
   }
 
@@ -42,7 +43,9 @@ export class DatabaseCommander extends CommandRunner {
       case 'DELETE':
         break;
       case 'CLEAR NULL ROWS':
+        result = this.databaseService.clearNullRows(table, columns);
     }
+    console.log(result);
   }
 
   @Option({
