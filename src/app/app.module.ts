@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '../config/database/config.service';
-import { DBControlModule } from '../database/database.module';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { DBControlModule } from '../database/database.module';
     }),
 
     /* Command Modules */
-    DBControlModule,
+    DatabaseModule,
   ],
 })
 export class AppModule {}

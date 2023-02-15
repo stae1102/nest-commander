@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { DatabaseCommander } from './database.command';
-import { DatabaseQueryInquirer } from './database-query.inquirer';
-import { DatabaseInquirer } from './database.inquirer';
+import { QueryQuestions } from './questions/query.question';
+import { TableQuestions } from './questions/table.question';
 
 @Module({
-  providers: [DatabaseCommander, DatabaseInquirer, DatabaseQueryInquirer],
+  providers: [DatabaseCommander, TableQuestions, QueryQuestions],
 })
-export class DBControlModule {}
+export class DatabaseModule {}
