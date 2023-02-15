@@ -6,7 +6,7 @@ import { BasicDatabaseOptions } from '../types/interfaces/basic-database-options
 export class TableQuestions {
   @Question({
     message: 'Which table would you like to choose?',
-    name: 'table',
+    name: 'target',
     type: 'list',
     choices: TABLES,
   })

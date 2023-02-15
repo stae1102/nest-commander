@@ -43,7 +43,8 @@ export class DatabaseCommander extends CommandRunner {
       case 'DELETE':
         break;
       case 'CLEAR NULL ROWS':
-        result = this.databaseService.clearNullRows(table, columns);
+        result = await this.databaseService.clearNullRows(table, columns);
+        break;
     }
     console.log(result);
   }

@@ -7,7 +7,7 @@ export class QueryQuestions {
     message: 'Which database query to execute?',
     name: 'query',
     type: 'list',
-    choose: QUERIES,
+    choices: QUERIES,
   })
   parseQuery(query: string): string {
     if (!QUERIES.includes(query)) {
