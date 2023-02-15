@@ -1,4 +1,8 @@
 import { Command, CommandRunner, InquirerService, Option } from 'nest-commander';
+import { DatabaseService } from './database.service';
+import { Table } from './types/enums/table.enum';
+import { QueryAnswer } from './types/interfaces/query-answer.interface';
+import { TableAnswer } from './types/interfaces/table-answer.interface';
 
 @Command({
   name: 'db-control',
@@ -6,31 +10,43 @@ import { Command, CommandRunner, InquirerService, Option } from 'nest-commander'
   options: { isDefault: true },
 })
 export class DatabaseCommander extends CommandRunner {
-  constructor(private readonly inquirer: InquirerService) {
+  constructor(private readonly inquirer: InquirerService, private readonly databaseService: DatabaseService) {
     super();
   }
 
   async run(passedParams: string[], options?: Record<string, any>): Promise<void> {
-    /* first value of inputs */
-    let database = passedParams[0];
-
-    /* If there were not inputs, ask which database to choose */
-    if (!database) {
-      database = (
-        await this.inquirer.ask<{ database: string }>(
-          'choose-database',
-          /* no options */
-          undefined,
-        )
-      ).database;
-    }
-
     /* If there was not option value, ask which query to execute */
     if (!options.query) {
-      options.query = (await this.inquirer.ask<{ query: string }>('choose-query', undefined)).query;
+      options.query = (await this.inquirer.ask<QueryAnswer>('select-query', options)).query;
     }
 
-    console.log(options.query);
+    /* first value of inputs */
+    let table: Table = passedParams[0] as Table;
+    let columns: string[] = [];
+
+    /* If there were not inputs, ask which database to choose */
+    if (!table) {
+      const target = (await this.inquirer.ask<TableAnswer>('select-table', undefined)).target;
+      table = target.table;
+      columns = target.columns;
+    }
+
+    let result: any;
+
+    switch (options.query) {
+      case 'INSERT':
+        break;
+      case 'SELECT':
+        break;
+      case 'UPDATE':
+        break;
+      case 'DELETE':
+        break;
+      case 'CLEAR NULL ROWS':
+        result = await this.databaseService.clearNullRows(table, columns);
+        break;
+    }
+    console.log(result);
   }
 
   @Option({
