@@ -1,4 +1,4 @@
-import { Table } from '../enums/tables.enum';
+import { Table } from '../enums/table.enum';
 
 export interface TableAnswer {
   query?: string;

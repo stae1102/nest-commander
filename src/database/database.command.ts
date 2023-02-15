@@ -1,5 +1,5 @@
 import { Command, CommandRunner, InquirerService, Option } from 'nest-commander';
-import { Table } from './types/enums/tables.enum';
+import { Table } from './types/enums/table.enum';
 import { QueryAnswer } from './types/interfaces/query-answer.interface';
 import { TableAnswer } from './types/interfaces/table-answer.interface';
 
